@@ -13,8 +13,24 @@
 for a in range(1, 128):
     f = True
     for x in range(1, 128):
-        if not (x & 77 == 0 or x & 12 != 0 or x & a != 0):
+        if not((x & 77 != 0) <= ((x & 12 == 0) <= (x & a != 0))):
             f = False
             break
     if f:
         print(a)
+        break
+
+# Решение без флага
+for a in range(1, 128):
+    for x in range(1, 128):
+        if not((x & 77 != 0) <= ((x & 12 == 0) <= (x & a != 0))):
+            break
+    else:
+        print(a)
+        break
+
+# Решение с all
+for a in range(1, 128):
+    if all((x & 77 != 0) <= ((x & 12 == 0) <= (x & a != 0)) for x in range(1, 128)):
+        print(a)
+        break
