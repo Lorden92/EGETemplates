@@ -1,16 +1,9 @@
-import sys
-sys.setrecursionlimit(900000000)
-c = 1
-def f(n):
-    global c
-    c += 1
-    print(c)
-    if n < 0.00005:
-        return n
+f = [0] * 20000
+for n in range(20000):
+    if n < 5:
+        f[n] = n
     else:
-        return 0.00002 * n * f(n - 0.00004)
-
-print(f(0.13766))
-# print((f(0.13766) - 0.00009 * f(0.13762)) / f(0.13758))
+        f[n] = f[n - 4] * 2 * n
+print((f[13766] - 9 * f[13762]) / f[13758])
 
 # 757543052
